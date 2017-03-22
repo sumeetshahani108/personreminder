@@ -26,7 +26,7 @@ public class ViewRemindersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reminders);
-
+        myDB = new DatabaseHelper(this) ;
         recyclerView = (RecyclerView)findViewById(R.id.recyler_view_2);
         recyclerView.setHasFixedSize(true);
 
@@ -35,6 +35,7 @@ public class ViewRemindersActivity extends AppCompatActivity {
 
         Intent myIntent = getIntent();
         int intValue = myIntent.getIntExtra("contact_id", 1);
+        Log.d("VIEW",intValue+"");
 
         Cursor res = myDB.getReminders(intValue);
 
@@ -58,5 +59,6 @@ public class ViewRemindersActivity extends AppCompatActivity {
 
         adapter = new ViewRemindersActivityRecyclerAdapter(this, data);
         recyclerView.setAdapter(adapter);
+
     }
 }

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityRecyc
 
             while (res.moveToNext()){
                 ContactList list = new ContactList();
-                Log.d("MainActivity", res.getString(1));
+                Log.d("MainActivity", res.getString(0));
                 list.setId(Integer.parseInt(res.getString(0)));
                 list.setName(res.getString(1));
                 list.setNumber(res.getString(2));
@@ -66,6 +66,31 @@ public class MainActivity extends AppCompatActivity implements MainActivityRecyc
         }
         
         adapter = new MainActivityRecyclerAdapter(this, data);
+        adapter.setItemClickCallback(this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Cursor res = myDB.getContactsOfReminders();
+        List<ContactList> data = new ArrayList<>();
+
+        if (res.getCount() == 0) {
+            Log.d("MainActivity", "Nothing");
+        }else {
+
+            while (res.moveToNext()){
+                ContactList list = new ContactList();
+                Log.d("MainActivity", res.getString(1));
+                list.setId(Integer.parseInt(res.getString(0)));
+                list.setName(res.getString(1));
+                list.setNumber(res.getString(2));
+                data.add(list);
+            }
+        }
+        adapter = new MainActivityRecyclerAdapter(this, data);
+        adapter.setItemClickCallback(this);
         recyclerView.setAdapter(adapter);
     }
 

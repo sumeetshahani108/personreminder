@@ -2,6 +2,7 @@ package com.example.user.personreminder.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,7 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
         public void onClick(View view) {
             if (view.getId() == R.id.card_view){
                 ContactList item = data.get(getAdapterPosition());
+                Log.d("Main", item.getId() + "");
                 itemClickCallback.onItemClick(item.getId());
             }
         }
