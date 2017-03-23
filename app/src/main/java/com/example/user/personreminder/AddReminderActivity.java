@@ -6,19 +6,26 @@ import android.app.TimePickerDialog;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -44,7 +51,6 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     EditText location;
     TextView contact;
     Button addContact;
-    CheckBox alert;
     TextView addPickdate;
     TextView addPickTime;
     TextView addReminderDate ;
@@ -85,7 +91,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     int REMINDER_DATE_DIALOG_ID = 1;
     int REMINDER_TIME_DIALOG_ID = 0;
 
-    CheckBox alertBox ;
+    SwitchCompat alertBox ;
 
     Calendar calendar;
 
@@ -126,19 +132,46 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         saveReminder.setOnClickListener(this);
         cancelReminderSetup.setOnClickListener(this);
 
-
         addReminderDate.setText(day + "-" + month + "-" + year);
         addReminderTime.setText(hours + ":" + minutes);
+        addPickdate.setText(day + "-" + month + "-" + year);
+        addPickTime.setText(hours + ":" + minutes);
 
-        addPickdate.setText("nothing selected");
-        addPickTime.setText("nothing selected");
+        alertBox = (SwitchCompat) findViewById(R.id.addAlert) ;
+        final LinearLayout layone= (LinearLayout) findViewById(R.id.layoutForAlert);
+        layone.setVisibility(View.GONE);
 
-        alertBox = (CheckBox) findViewById(R.id.addAlert) ;
+        alertBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Log.d(TAG, "isChecked");
+                    layone.setVisibility(View.VISIBLE);
+                }else{
+                    Log.d(TAG, "isNotChecked");
+                    layone.setVisibility(View.GONE);
+                }
+            }
+        });
 
-       /* if(!isChecked){
-            addPickdate.setClickable(false);
-            addPickTime.setClickable(false);
-        }*/
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    Log.d("focus", "touchevent");
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
     }
 
     @Override
@@ -276,6 +309,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         contactData = cNumber ;
         if(title == null){
             Toast.makeText(this, "Title cannot be empty"  , Toast.LENGTH_LONG).show();
+        }else if(cNumber == null){
+            Toast.makeText(this, "Choose a Contact"  , Toast.LENGTH_LONG).show();
         }else{
             SQLiteDatabase sqLiteDatabase = myDB.getReadableDatabase() ;
             Cursor contactCheckCursor = myDB.checkContact(sqLiteDatabase, cNumber) ;
