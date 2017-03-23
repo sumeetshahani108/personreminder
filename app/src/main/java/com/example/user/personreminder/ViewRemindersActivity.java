@@ -41,6 +41,7 @@ public class ViewRemindersActivity extends AppCompatActivity {
 
         List<ReminderList> data = new ArrayList<>();
 
+
         if ( res.getCount() == 0){
             Log.d("ViewRemindersActivity", "Nothing");
         }else {
