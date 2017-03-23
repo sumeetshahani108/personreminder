@@ -69,40 +69,66 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/addTitle"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:ems="10"
-                        android:hint="Title"
-                        android:inputType="textPersonName"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp" />
+                        android:background="@drawable/underline"
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/addDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="53dp"
-                        android:ems="10"
-                        android:hint="Description"
-                        android:inputType="textPersonName"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp" />
+                        <EditText
+                            android:id="@+id/addTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:ems="10"
+                            android:hint="Title"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp" />
+                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/addLocation"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:ems="10"
-                        android:hint="Location"
-                        android:inputType="textPersonName"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp" />
+                        android:background="@drawable/underline"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/addDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:ems="10"
+                            android:hint="Description"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/addLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:ems="10"
+                            android:hint="Location"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -173,122 +199,151 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Alert"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp" />
-
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/addAlert"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:paddingRight="10dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layoutForAlert"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:alpha="0.5"
-                            android:gravity="center_vertical"
-                            android:text="Alert Date"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/addReminderDate"
-                            android:layout_width="262dp"
-                            android:layout_height="match_parent"
-                            android:alpha="0.5"
-                            android:gravity="right|center"
-                            android:paddingRight="10dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:alpha="0.5"
-                            android:gravity="center_vertical"
-                            android:text="Alert Time"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/addReminderTime"
-                            android:layout_width="262dp"
-                            android:layout_height="match_parent"
-                            android:alpha="0.5"
-                            android:gravity="right|center"
-                            android:paddingRight="10dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/underline"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="Alert"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/addAlert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingRight="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutForAlert"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="53dp"
+                            android:background="@drawable/underline"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:alpha="0.5"
+                                android:gravity="center_vertical"
+                                android:text="Alert Date"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/addReminderDate"
+                                android:layout_width="262dp"
+                                android:layout_height="match_parent"
+                                android:alpha="0.5"
+                                android:gravity="right|center"
+                                android:paddingRight="10dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="53dp"
+                            android:background="@drawable/underline"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:alpha="0.5"
+                                android:gravity="center_vertical"
+                                android:text="Alert Time"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/addReminderTime"
+                                android:layout_width="262dp"
+                                android:layout_height="match_parent"
+                                android:alpha="0.5"
+                                android:gravity="right|center"
+                                android:paddingRight="10dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/border"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/addContact"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="0.18"
-                        android:stateListAnimator="@animator/my_animator"
-                        android:text="Add Contact"
-                        android:textColor="@android:color/white"
-                        android:textStyle="normal|bold"
-                        android:theme="@style/MyButton" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/contact"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:text="Choose a Contact"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        <Button
+                            android:id="@+id/addContact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="53dp"
+                            android:layout_weight="1"
+                            android:stateListAnimator="@animator/my_animator"
+                            android:text="Add Contact"
+                            android:textColor="@android:color/white"
+                            android:textStyle="normal|bold"
+                            android:theme="@style/MyButton" />
+
+                        <TextView
+                            android:id="@+id/contact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="53dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Choose a Contact"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
