@@ -354,11 +354,11 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         Intent my_intent = new Intent(this, Alarm_Receiver.class);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-        calendar.set(Calendar.HOUR_OF_DAY, hours);
-        calendar.set(Calendar.MINUTE, minutes);
+        calendar.set(Calendar.YEAR, 2017);
+        calendar.set(Calendar.MONTH, 3);
+        calendar.set(Calendar.DAY_OF_MONTH, 25);
+        calendar.set(Calendar.HOUR_OF_DAY, reminderHours);
+        calendar.set(Calendar.MINUTE, reminderMinutes);
 
         my_intent.putExtra("extra", "alarm on");
 
