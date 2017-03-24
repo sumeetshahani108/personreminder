@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.user.personreminder.adapters.MainActivityRecyclerAdapter;
 import com.example.user.personreminder.adapters.ViewRemindersActivityRecyclerAdapter;
@@ -16,11 +20,16 @@ import com.example.user.personreminder.database.DatabaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewRemindersActivity extends AppCompatActivity {
+public class ViewRemindersActivity extends AppCompatActivity implements View.OnClickListener{
 
     DatabaseHelper myDB;
     public RecyclerView recyclerView;
     public ViewRemindersActivityRecyclerAdapter adapter ;
+
+    ImageButton editReminder ;
+    ImageButton deleteReminder ;
+
+    List<ReminderList> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,9 @@ public class ViewRemindersActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(this) ;
         recyclerView = (RecyclerView)findViewById(R.id.recyler_view_2);
         recyclerView.setHasFixedSize(true);
+
+        editReminder = (ImageButton) findViewById(R.id.editReminder) ;
+        deleteReminder = (ImageButton) findViewById(R.id.deleteReminder) ;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -39,13 +51,13 @@ public class ViewRemindersActivity extends AppCompatActivity {
 
         Cursor res = myDB.getReminders(intValue);
 
-        List<ReminderList> data = new ArrayList<>();
+
 
         if ( res.getCount() == 0){
             Log.d("ViewRemindersActivity", "Nothing");
         }else {
             while (res.moveToNext()) {
-                ReminderList list = new ReminderList();
+                ReminderList list = new ReminderList() ;
                 list.setReminder_id(Integer.parseInt(res.getString(0)));
                 list.setReminder_title(res.getString(1));
                 list.setReminder_description(res.getString(2));
@@ -59,6 +71,21 @@ public class ViewRemindersActivity extends AppCompatActivity {
 
         adapter = new ViewRemindersActivityRecyclerAdapter(this, data);
         recyclerView.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.editReminder:
+                break;
+            case R.id.deleteReminder:
+                DeleteReminder();
+                break;
+        }
+    }
+
+    private void DeleteReminder() {
 
     }
 }

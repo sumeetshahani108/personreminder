@@ -23,25 +23,27 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="bottom"
+                android:padding="10dp"
                 android:text="Sumeet Shahani"
-                android:layout_marginTop="5dp"
-                android:padding="10dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/contact_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
+                android:paddingLeft="10dp"
                 android:text="+91-8767772212"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:padding="10dp" />
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>
