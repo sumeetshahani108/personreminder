@@ -1,7 +1,9 @@
 package com.example.user.personreminder;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 
 import android.app.Activity;
@@ -58,6 +60,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     TextView addReminderDate ;
     TextView addReminderTime ;
 
+    PendingIntent pendingIntent ;
+    AlarmManager alarm_manager ;
     public static final int PICK_CONTACT = 1;
     String titleData;
     String descriptionData;
@@ -190,6 +194,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+
     }
 
     @Override
@@ -298,6 +303,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             year = yearData;
             month = monthOfYear + 1;
             day = dayOfMonth;
+            Log.d("Add" , month+"");
             addPickdate.setText(day + "-" + month + "-" + year);
         }
     };
@@ -315,7 +321,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void onDateSet(DatePicker view, int yearData, int monthOfYear, int dayOfMonth) {
             reminderYear = yearData;
-            reminderMonth = monthOfYear + 1;
+            reminderMonth = monthOfYear + 2;
+            Log.d("Add",reminderMonth+"");
             reminderDay = dayOfMonth;
             addReminderDate.setText(reminderDay + "-" + reminderMonth + "-" + reminderYear);
         }
@@ -342,6 +349,22 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             reminderDate = reminderDay + "-" + reminderMonth + "-" + reminderYear ;
             reminderTime = reminderHours + "-" + reminderMinutes ;
         }
+
+        alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent my_intent = new Intent(this, Alarm_Receiver.class);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Calendar.HOUR_OF_DAY, hours);
+        calendar.set(Calendar.MINUTE, minutes);
+
+        my_intent.putExtra("extra", "alarm on");
+
+        pendingIntent = PendingIntent.getBroadcast(AddReminderActivity.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
         contactData = cNumber ;
         if(title == null){
             Toast.makeText(this, "Title cannot be empty"  , Toast.LENGTH_LONG).show();

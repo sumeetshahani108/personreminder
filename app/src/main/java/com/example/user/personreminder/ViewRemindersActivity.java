@@ -1,5 +1,7 @@
 package com.example.user.personreminder;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,7 +21,9 @@ import com.example.user.personreminder.data.ReminderList;
 import com.example.user.personreminder.database.DatabaseHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
 
 public class ViewRemindersActivity extends AppCompatActivity implements ViewRemindersActivityRecyclerAdapter.itemClickCallback {
 
@@ -67,7 +71,6 @@ public class ViewRemindersActivity extends AppCompatActivity implements ViewRemi
         recyclerView.setAdapter(adapter);
 
     }
-
     @Override
     public void onItemClick(int p, String buttonName) {
         if (buttonName.equals("edit")) {
