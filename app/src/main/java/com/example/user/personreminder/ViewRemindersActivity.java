@@ -1,5 +1,7 @@
 package com.example.user.personreminder;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,13 +21,15 @@ import com.example.user.personreminder.data.ReminderList;
 import com.example.user.personreminder.database.DatabaseHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class ViewRemindersActivity extends AppCompatActivity implements View.OnClickListener{
+public class ViewRemindersActivity extends AppCompatActivity{
 
     DatabaseHelper myDB;
     public RecyclerView recyclerView;
     public ViewRemindersActivityRecyclerAdapter adapter ;
+
 
     ImageButton editReminder ;
     ImageButton deleteReminder ;
@@ -40,9 +44,6 @@ public class ViewRemindersActivity extends AppCompatActivity implements View.OnC
         recyclerView = (RecyclerView)findViewById(R.id.recyler_view_2);
         recyclerView.setHasFixedSize(true);
 
-        editReminder = (ImageButton) findViewById(R.id.editReminder) ;
-        deleteReminder = (ImageButton) findViewById(R.id.deleteReminder) ;
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -51,9 +52,6 @@ public class ViewRemindersActivity extends AppCompatActivity implements View.OnC
         Log.d("VIEW",intValue+"");
 
         Cursor res = myDB.getReminders(intValue);
-
-
-
 
         if ( res.getCount() == 0){
             Log.d("ViewRemindersActivity", "Nothing");
@@ -74,24 +72,5 @@ public class ViewRemindersActivity extends AppCompatActivity implements View.OnC
         adapter = new ViewRemindersActivityRecyclerAdapter(this, data);
         recyclerView.setAdapter(adapter);
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.editReminder:
-                break;
-            case R.id.deleteReminder:
-                DeleteReminder();
-                break;
-        }
-    }
-
-    private void DeleteReminder() {
-        SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase() ;
-        boolean bool = myDB.deleteReminder(sqLiteDatabase, 2);
-        if(bool){
-            Toast.makeText(this, "deleted", Toast.LENGTH_LONG).show();
-        }
     }
 }

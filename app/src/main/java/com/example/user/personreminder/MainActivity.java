@@ -1,5 +1,7 @@
 package com.example.user.personreminder;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityRecyc
         adapter = new MainActivityRecyclerAdapter(this, data);
         adapter.setItemClickCallback(this);
         recyclerView.setAdapter(adapter);
+
+
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.example.user.personreminder;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 
 import android.app.Activity;
@@ -58,6 +60,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     TextView addReminderDate ;
     TextView addReminderTime ;
 
+    PendingIntent pendingIntent ;
+    AlarmManager alarm_manager ;
     public static final int PICK_CONTACT = 1;
     String titleData;
     String descriptionData;
@@ -155,6 +159,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+
 
     }
 
@@ -308,6 +313,22 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             reminderDate = day + "-" + month + "-" + year ;
             reminderTime = hours + "-" + minutes ;
         }
+
+        alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent my_intent = new Intent(this, Alarm_Receiver.class);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, reminderYear);
+        calendar.set(Calendar.MONTH, reminderMonth);
+        calendar.set(Calendar.DAY_OF_MONTH, reminderDay);
+        calendar.set(Calendar.HOUR_OF_DAY, reminderHours);
+        calendar.set(Calendar.MINUTE, reminderMinutes);
+
+        my_intent.putExtra("extra", "alarm on");
+
+        pendingIntent = PendingIntent.getBroadcast(AddReminderActivity.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
         contactData = cNumber ;
         if(title == null){
             Toast.makeText(this, "Title cannot be empty"  , Toast.LENGTH_LONG).show();
