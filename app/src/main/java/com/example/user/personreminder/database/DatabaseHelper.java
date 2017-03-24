@@ -152,4 +152,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dateFormat.format(date);
     }
 
+    public boolean deleteReminder(SQLiteDatabase sqLiteDatabase, int i) {
+        Cursor res = sqLiteDatabase.rawQuery("SELECT "+ REMINDER_CONTACT_ID + " FROM " + TABLE_REMINDERS + " WHERE _id = '" + i + "'",null) ;
+        //res.get
+        return sqLiteDatabase.delete(TABLE_REMINDERS, REMINDER_ID + "=" + i, null) >0;
+    }
 }

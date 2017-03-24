@@ -2,6 +2,7 @@ package com.example.user.personreminder;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -86,6 +87,10 @@ public class ViewRemindersActivity extends AppCompatActivity implements View.OnC
     }
 
     private void DeleteReminder() {
-
+        SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase() ;
+        boolean bool = myDB.deleteReminder(sqLiteDatabase, 2);
+        if(bool){
+            Toast.makeText(this, "deleted", Toast.LENGTH_LONG).show();
+        }
     }
 }
