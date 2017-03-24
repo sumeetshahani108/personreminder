@@ -16,6 +16,7 @@ public class StopAlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_alarm);
         Intent my_intent = new Intent(this, Alarm_Receiver.class);
+        alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         pendingIntent = PendingIntent.getBroadcast(StopAlarmActivity.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarm_manager.cancel(pendingIntent);
         my_intent.putExtra("extra", "alarm off");

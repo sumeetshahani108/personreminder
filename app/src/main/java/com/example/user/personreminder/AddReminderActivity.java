@@ -269,6 +269,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             year = yearData;
             month = monthOfYear + 1;
             day = dayOfMonth;
+            Log.d("Add" , month+"");
             addPickdate.setText(day + "-" + month + "-" + year);
         }
     };
@@ -286,7 +287,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void onDateSet(DatePicker view, int yearData, int monthOfYear, int dayOfMonth) {
             reminderYear = yearData;
-            reminderMonth = monthOfYear + 1;
+            reminderMonth = monthOfYear + 2;
+            Log.d("Add",reminderMonth+"");
             reminderDay = dayOfMonth;
             addReminderDate.setText(reminderDay + "-" + reminderMonth + "-" + reminderYear);
         }
@@ -318,11 +320,11 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         Intent my_intent = new Intent(this, Alarm_Receiver.class);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, reminderYear);
-        calendar.set(Calendar.MONTH, reminderMonth);
-        calendar.set(Calendar.DAY_OF_MONTH, reminderDay);
-        calendar.set(Calendar.HOUR_OF_DAY, reminderHours);
-        calendar.set(Calendar.MINUTE, reminderMinutes);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Calendar.HOUR_OF_DAY, hours);
+        calendar.set(Calendar.MINUTE, minutes);
 
         my_intent.putExtra("extra", "alarm on");
 
