@@ -94,8 +94,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
 
     int DATE_DIALOG_ID = 1;
     int TIME_DIALOG_ID = 0;
-    int REMINDER_DATE_DIALOG_ID = 1;
-    int REMINDER_TIME_DIALOG_ID = 0;
+    int REMINDER_DATE_DIALOG_ID = 2;
+    int REMINDER_TIME_DIALOG_ID = 3;
 
     SwitchCompat alertBox ;
 
@@ -136,6 +136,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         addPickTime.setOnClickListener(this);
         addReminderDate.setOnClickListener(this);
         addReminderTime.setOnClickListener(this);
+
         addContact.setOnClickListener(this);
         saveReminder.setOnClickListener(this);
         cancelReminderSetup.setOnClickListener(this);
@@ -343,7 +344,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         descriptionData = description.getText().toString().trim();
         locationData = location.getText().toString().trim();
         date = day + "-" + month + "-" + year ;
-        time = hours + "-" + minutes ;
+        time = hours + ":" + minutes ;
         if(alertBox.isChecked()){
             alertData = 1 ;
             reminderDate = reminderDay + "-" + reminderMonth + "-" + reminderYear ;
@@ -354,11 +355,11 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         Intent my_intent = new Intent(this, Alarm_Receiver.class);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-        calendar.set(Calendar.HOUR_OF_DAY, hours);
-        calendar.set(Calendar.MINUTE, minutes);
+        calendar.set(Calendar.YEAR, 2017);
+        calendar.set(Calendar.MONTH, 3);
+        calendar.set(Calendar.DAY_OF_MONTH, 25);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 25);
 
         my_intent.putExtra("extra", "alarm on");
 
