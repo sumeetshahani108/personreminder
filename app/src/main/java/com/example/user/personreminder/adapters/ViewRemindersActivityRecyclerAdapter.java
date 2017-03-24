@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.user.personreminder.R;
+import com.example.user.personreminder.ViewRemindersActivity;
 import com.example.user.personreminder.data.ReminderList;
 
 import java.util.ArrayList;
