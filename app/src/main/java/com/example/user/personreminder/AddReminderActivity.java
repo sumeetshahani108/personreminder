@@ -319,7 +319,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             if(contactCheckCursor.moveToFirst()){
                 Log.e(TAG, "count" + contactCheckCursor.getCount());
                 int contact_id = contactCheckCursor.getInt(0) ;
-                Log.e(TAG, "count" + contact_id); String number = contactCheckCursor.getString(2);
+                Log.e(TAG, "count" + contact_id);
+                String number = contactCheckCursor.getString(2);
                 myDB.insertIntoReminders(titleData, descriptionData, locationData, reminderDate, reminderTime, alertData, date, time, contact_id) ;
                 finish();
                 Toast.makeText(this, "Note added", Toast.LENGTH_LONG).show() ;

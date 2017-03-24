@@ -88,12 +88,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor checkContact(SQLiteDatabase db, String cNumber){
-        String[] projection = {
-                CONTACTS_ID ,
-                CONTACTS_NAME,
-                CONTACTS_NUMBER
-        } ;
-
         String where = CONTACTS_NUMBER + " = " + cNumber ;
         return db.rawQuery("SELECT * FROM contacts WHERE number = '"+cNumber+"'", null);
     }
@@ -152,9 +146,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dateFormat.format(date);
     }
 
+    public Cursor checkLastReminder(SQLiteDatabase sqLiteDatabase, int reminder_id) {
+        return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_REMINDERS + " WHERE _id = '" + reminder_id + "'",null) ;
+    }
+
+    public Cursor checkLastContact(SQLiteDatabase sqLiteDatabase, int contact_id) {
+       return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_REMINDERS + " WHERE contact_id = '" + contact_id + "'",null) ;
+    }
+
     public boolean deleteReminder(SQLiteDatabase sqLiteDatabase, int i) {
-        Cursor res = sqLiteDatabase.rawQuery("SELECT "+ REMINDER_CONTACT_ID + " FROM " + TABLE_REMINDERS + " WHERE _id = '" + i + "'",null) ;
-        //res.get
-        return sqLiteDatabase.delete(TABLE_REMINDERS, REMINDER_ID + "=" + i, null) >0;
+        return sqLiteDatabase.delete(TABLE_REMINDERS, REMINDER_ID + "=" + i, null) > 0;
+    }
+
+    public boolean deleteContact(SQLiteDatabase sqLiteDatabase, int contact_id) {
+        return sqLiteDatabase.delete(TABLE_CONTACTS, CONTACTS_ID + "=" + contact_id, null) > 0;
     }
 }
