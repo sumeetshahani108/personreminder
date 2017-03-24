@@ -339,8 +339,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         time = hours + "-" + minutes ;
         if(alertBox.isChecked()){
             alertData = 1 ;
-            reminderDate = day + "-" + month + "-" + year ;
-            reminderTime = hours + "-" + minutes ;
+            reminderDate = reminderDay + "-" + reminderMonth + "-" + reminderYear ;
+            reminderTime = reminderHours + "-" + reminderMinutes ;
         }
         contactData = cNumber ;
         if(title == null){
