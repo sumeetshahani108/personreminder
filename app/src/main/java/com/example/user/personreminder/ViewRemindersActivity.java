@@ -48,7 +48,7 @@ public class ViewRemindersActivity extends AppCompatActivity implements ViewRemi
         int intValue = myIntent.getIntExtra("contact_id", 1);
         Log.d("VIEW", intValue + "");
 
-        Cursor res = myDB.getReminders(intValue);
+        Cursor res = myDB.getRemindersOfContact(intValue);
 
         if (res.getCount() == 0) {
             Log.d("ViewRemindersActivity", "Nothing");
@@ -83,13 +83,16 @@ public class ViewRemindersActivity extends AppCompatActivity implements ViewRemi
     }
 
     private void editReminder(int p) {
-
+        Intent editIntent = new Intent(this, AddReminderActivity.class) ;
+        editIntent.putExtra("calling_activity", ActivityConstants.EDIT_ACTIVITY) ;
+        editIntent.putExtra("reminder_id", p);
+        startActivity(editIntent);
     }
 
     private void deleteReminder(int p) {
         myDB = new DatabaseHelper(this);
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        Cursor res1 = myDB.checkLastReminder(sqLiteDatabase, p);
+        Cursor res1 = myDB.getReminder(sqLiteDatabase, p);
         if (res1.moveToFirst()) {
             int contact_id = res1.getInt(5);
             Cursor res2 = myDB.checkLastContact(sqLiteDatabase, contact_id);

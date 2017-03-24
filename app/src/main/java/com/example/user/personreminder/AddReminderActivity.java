@@ -100,6 +100,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     SwitchCompat alertBox ;
 
     Calendar calendar;
+    String callingActivity ;
+    int reminderId ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,14 +140,46 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         saveReminder.setOnClickListener(this);
         cancelReminderSetup.setOnClickListener(this);
 
+        alertBox = (SwitchCompat) findViewById(R.id.addAlert) ;
+        final LinearLayout layone= (LinearLayout) findViewById(R.id.layoutForAlert);
+        layone.setVisibility(View.GONE);
+
+        Intent myIntent = getIntent();
+        callingActivity = myIntent.getStringExtra("calling_activity");
+        reminderId = myIntent.getIntExtra("reminder_id", 1);
+
+
+        if (callingActivity.equals(ActivityConstants.EDIT_ACTIVITY)){
+            SQLiteDatabase sqLiteDatabase = myDB.getReadableDatabase();
+            Cursor res = myDB.getReminder(sqLiteDatabase, reminderId);
+            if(res.moveToFirst()){
+                title.setText(res.getString(1));
+                description.setText(res.getString(2));
+                location.setText(res.getString(3));
+                addPickdate.setText(res.getString(7));
+                addPickTime.setText(res.getString(8));
+                int alert = res.getInt(6);
+                if(alert == 0){
+                    alertBox.setChecked(false);
+                }else if(alert == 1){
+                    alertBox.setChecked(true);
+                    layone.setVisibility(View.VISIBLE);
+                    addReminderDate.setText(res.getString(9));
+                    addReminderTime.setText(res.getString(10));
+                }
+                Cursor res2 = myDB.getContact(sqLiteDatabase, res.getInt(5));
+                if(res2.moveToFirst()){
+                    contact.setText(res2.getString(1) + " : " + res2.getString(2));
+                }
+
+            }
+        }
+
         addReminderDate.setText(day + "-" + month + "-" + year);
         addReminderTime.setText(hours + ":" + minutes);
         addPickdate.setText(day + "-" + month + "-" + year);
         addPickTime.setText(hours + ":" + minutes);
 
-        alertBox = (SwitchCompat) findViewById(R.id.addAlert) ;
-        final LinearLayout layone= (LinearLayout) findViewById(R.id.layoutForAlert);
-        layone.setVisibility(View.GONE);
 
         alertBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -312,8 +346,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         time = hours + "-" + minutes ;
         if(alertBox.isChecked()){
             alertData = 1 ;
-            reminderDate = day + "-" + month + "-" + year ;
-            reminderTime = hours + "-" + minutes ;
+            reminderDate = reminderDay + "-" + reminderMonth + "-" + reminderYear ;
+            reminderTime = reminderHours + "-" + reminderMinutes ;
         }
 
         alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);

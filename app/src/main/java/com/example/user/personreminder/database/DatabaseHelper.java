@@ -133,7 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res ;
     }
 
-    public Cursor getReminders(int id){
+    public Cursor getRemindersOfContact(int id){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_REMINDERS + " WHERE contact_id = '" + id + "'",null) ;
         return res ;
@@ -146,19 +146,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dateFormat.format(date);
     }
 
-    public Cursor checkLastReminder(SQLiteDatabase sqLiteDatabase, int reminder_id) {
+    public Cursor getReminder(SQLiteDatabase sqLiteDatabase, int reminder_id) {
         return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_REMINDERS + " WHERE _id = '" + reminder_id + "'",null) ;
     }
 
+    /* for deleting reminder*/
+
+    /*
+    Checks if the reminder is the last reminder of that contact
+     */
     public Cursor checkLastContact(SQLiteDatabase sqLiteDatabase, int contact_id) {
        return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_REMINDERS + " WHERE contact_id = '" + contact_id + "'",null) ;
     }
 
+    /*
+    deletes the reminder first
+     */
     public boolean deleteReminder(SQLiteDatabase sqLiteDatabase, int i) {
         return sqLiteDatabase.delete(TABLE_REMINDERS, REMINDER_ID + "=" + i, null) > 0;
     }
 
+    /*
+    then the associated contact
+     */
     public boolean deleteContact(SQLiteDatabase sqLiteDatabase, int contact_id) {
         return sqLiteDatabase.delete(TABLE_CONTACTS, CONTACTS_ID + "=" + contact_id, null) > 0;
+    }
+
+    /* for edit*/
+
+    /*
+    gets contact of the reminder to edit
+     */
+
+    public Cursor getContact(SQLiteDatabase sqLiteDatabase, int contact_id) {
+        return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_CONTACTS + " WHERE _id = '" + contact_id + "'",null) ;
     }
 }
