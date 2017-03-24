@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityRecyc
             @Override
             public void onClick(View v) {
                 Intent newReminderIntent = new Intent(MainActivity.this, AddReminderActivity.class) ;
+                newReminderIntent.putExtra("calling_activity", ActivityConstants.MAIN_ACTIVITY);
                 startActivity(newReminderIntent) ;
             }
         });
