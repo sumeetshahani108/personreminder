@@ -13,15 +13,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="227dp"
+        android:layout_height="201dp"
         android:orientation="vertical"
         android:weightSum="1">
 
         <TextView
             android:id="@+id/reminder_title"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0.65"
+            android:layout_height="54dp"
             android:background="?attr/colorPrimary"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
@@ -30,89 +29,93 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/reminder_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reminder_title"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="It feels so great to add a New Reminder.Thankyou Sumeet Shahani for developing such a WonnderFul App" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:paddingTop="6dp">
-
-            <View
-                android:id="@+id/color_red"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/red_circle" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="30dp"
-                android:src="@drawable/ic_date_range_black_24dp" />
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/reminder_date"
-                android:layout_width="wrap_content"
+                android:id="@+id/reminder_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:text="12 / 12 / 2012" />
+                android:layout_below="@+id/reminder_title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="It feels so great to add a New Reminder.Thankyou Sumeet Shahani for developing such a WonnderFul App" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="30dp"
-                android:src="@drawable/ic_alarm_black_24dp" />
-
-            <TextView
-                android:id="@+id/reminder_time"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:text="5:00 AM" />
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <View
+                    android:id="@+id/color_red"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/red_circle" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="7dp"
-            android:layout_weight="0.75"
-            android:orientation="horizontal"
-            android:paddingTop="5dp"
-            android:weightSum="1">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:src="@drawable/ic_date_range_black_24dp" />
 
-            <ImageButton
-                android:id="@+id/editReminder"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/reminder_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:text="12 / 12 / 2012" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:src="@drawable/ic_alarm_black_24dp" />
+
+                <TextView
+                    android:id="@+id/reminder_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:text="5:00 AM" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:background="@drawable/ic_edit_black_24dp"
-                android:onClick="onClick"
-                android:padding="15dp" />
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:weightSum="1">
 
-            <ImageButton
-                android:id="@+id/deleteReminder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/ic_delete_black_24dp"
-                android:onClick="onClick"
-                android:padding="15dp"
-                android:textStyle="normal|bold" />
+                <ImageButton
+                    android:id="@+id/editReminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:background="@drawable/ic_edit_black_24dp"
+                    android:onClick="onClick"
+                    android:padding="15dp" />
 
+                <ImageButton
+                    android:id="@+id/deleteReminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/ic_delete_black_24dp"
+                    android:onClick="onClick"
+                    android:padding="15dp"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
