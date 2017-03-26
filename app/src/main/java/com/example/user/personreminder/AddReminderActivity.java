@@ -362,7 +362,6 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         calendar.set(Calendar.HOUR_OF_DAY, reminderHours);
         calendar.set(Calendar.MINUTE, reminderMinutes);
 
-
         my_intent.putExtra("extra", "alarm on");
 
         pendingIntent = PendingIntent.getBroadcast(AddReminderActivity.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
