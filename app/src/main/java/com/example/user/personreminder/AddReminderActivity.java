@@ -353,21 +353,22 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         time = hours + ":" + minutes ;
         if(alertBox.isChecked()){
             alertData = 1 ;
-            reminderDate = reminderDay + "-" + reminderMonth + "-" + reminderYear ;
+            reminderDate = reminderDay + "-" + (reminderMonth - 1) + "-" + reminderYear ;
             reminderTime = reminderHours + "-" + reminderMinutes ;
         }
 
         alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent my_intent = new Intent(this, Alarm_Receiver.class);
         Calendar calendar = Calendar.getInstance();
+
         calendar.set(Calendar.YEAR, reminderYear);
-        calendar.set(Calendar.MONTH, reminderMonth);
+        calendar.set(Calendar.MONTH, reminderMonth-2);
         calendar.set(Calendar.DAY_OF_MONTH, reminderDay);
         calendar.set(Calendar.HOUR_OF_DAY, reminderHours);
         calendar.set(Calendar.MINUTE, reminderMinutes);
 
         my_intent.putExtra("extra", "alarm on");
-
+        Log.d(TAG, calendar.getTimeInMillis()+ "");
         pendingIntent = PendingIntent.getBroadcast(AddReminderActivity.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 

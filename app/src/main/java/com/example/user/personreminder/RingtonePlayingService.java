@@ -43,15 +43,15 @@ public class RingtonePlayingService extends Service {
         }
 
         if (!this.isRunning && startId == 1) {
-            media_song = MediaPlayer.create(this, R.raw.aaye);
+            media_song = MediaPlayer.create(this, R.raw.alarm);
             media_song.start();
             this.isRunning = true ;
             this.startId = 0 ;
             NotificationManager notify_manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            Intent intent_stop_alarm_activity = new Intent(this.getApplicationContext(), StopAlarmActivity.class);
+            Intent intent_stop_alarm_activity = new Intent(this.getApplicationContext(), MainActivity.class);
             PendingIntent pending_intent_stop_alarm = PendingIntent.getActivity(this, 0, intent_stop_alarm_activity, 0);
             Notification notification_popup = new Notification.Builder(this)
-                    .setContentTitle("An alarm is going off")
+                    .setContentTitle("You have a new Reminder")
                     .setContentText("Click me!")
                     .setContentIntent(pending_intent_stop_alarm)
                     .setAutoCancel(true)

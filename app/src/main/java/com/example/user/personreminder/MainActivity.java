@@ -26,11 +26,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityRecyc
     FloatingActionButton addNewReminderButton ;
     private RecyclerView recyclerView;
     private MainActivityRecyclerAdapter adapter;
-
+    AlarmManager alarm_manager ;
+    PendingIntent pendingIntent ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent my_intent = new Intent(this, Alarm_Receiver.class);
+        alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarm_manager.cancel(pendingIntent);
+        my_intent.putExtra("extra", "alarm off");
+        sendBroadcast(my_intent);
         myDB = new DatabaseHelper(this) ;
 
         addNewReminderButton = (FloatingActionButton) findViewById(R.id.myFAB) ;
