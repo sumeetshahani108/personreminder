@@ -119,6 +119,12 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         hours = calendar.get(Calendar.HOUR_OF_DAY);
         minutes = calendar.get(Calendar.MINUTE);
 
+        reminderYear = calendar.get(Calendar.YEAR);
+        reminderMonth = calendar.get(Calendar.MONTH) + 1;
+        reminderDay = calendar.get(Calendar.DAY_OF_MONTH);
+        reminderHours = calendar.get(Calendar.HOUR_OF_DAY);
+        reminderMinutes = calendar.get(Calendar.MINUTE);
+
         title = (EditText) findViewById(R.id.addTitle);
         description = (EditText) findViewById(R.id.addDescription);
         location = (EditText) findViewById(R.id.addLocation);
@@ -323,7 +329,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         public void onDateSet(DatePicker view, int yearData, int monthOfYear, int dayOfMonth) {
             reminderYear = yearData;
             reminderMonth = monthOfYear + 2;
-            Log.d("Add",reminderMonth+"");
+            Log.d("Add",reminderMonth+" printtry");
             reminderDay = dayOfMonth;
             addReminderDate.setText(reminderDay + "-" + reminderMonth + "-" + reminderYear);
         }
@@ -353,12 +359,10 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
 
         alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent my_intent = new Intent(this, Alarm_Receiver.class);
-
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2017);
-        calendar.set(Calendar.MONTH, 3);
-        calendar.set(Calendar.DAY_OF_MONTH, 25);
-
+        calendar.set(Calendar.YEAR, reminderYear);
+        calendar.set(Calendar.MONTH, reminderMonth);
+        calendar.set(Calendar.DAY_OF_MONTH, reminderDay);
         calendar.set(Calendar.HOUR_OF_DAY, reminderHours);
         calendar.set(Calendar.MINUTE, reminderMinutes);
 
